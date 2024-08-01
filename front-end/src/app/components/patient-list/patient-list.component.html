@@ -10,6 +10,7 @@
         <th>Birthdate</th>
         <th>Address</th>
         <th>Phone number</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
         <td>{{ patient.birthDate }}</td>
         <td>{{ patient.address }}</td>
         <td>{{ patient.phoneNumber }}</td>
+        <td><a [routerLink]="['/patient-edit', patient.id]">Edit</a></td>
       </tr>
       </tbody>
     </table>
