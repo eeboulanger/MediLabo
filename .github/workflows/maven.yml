@@ -29,10 +29,10 @@ jobs:
         cache: maven
     
     - name: Compile
-      run: mvn -B clean compile --file TourGuide/pom.xml
+      run: mvn -B clean compile --file pom.xml
       
     - name: Run tests 
-      run: mvn -B test --file TourGuide/pom.xml
+      run: mvn -B test --file pom.xml
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipTests
