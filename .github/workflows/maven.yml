@@ -27,14 +27,13 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    
-    - name: Compile
-      run: mvn -B clean compile --file pom.xml
-      
-    - name: Run tests 
-      run: mvn -B test --file pom.xml
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml -DskipTests
+    # Patient Service
+    - name: Run tests patientservice
+      run: mvn -B clean test --file ./medilabo/patientservice/pom.xml
+    
+    # Gateway Service
+    - name: Run tests gatewayservice
+      run: mvn -B clean test --file ./medilabo/gateway/pom.xml
 
    
