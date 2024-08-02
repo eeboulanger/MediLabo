@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PatientService} from '../../services/patient.service';
 import {FormsModule, NgForm} from "@angular/forms";
 import {Patient} from "../../models/Patient";
+import {PatientFormComponent} from "../patient-form/patient-form.component";
 
 @Component({
   selector: 'patient-edit',
@@ -12,7 +13,8 @@ import {Patient} from "../../models/Patient";
   styleUrls: ['./patient-edit.component.css'],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    PatientFormComponent
   ],
 })
 

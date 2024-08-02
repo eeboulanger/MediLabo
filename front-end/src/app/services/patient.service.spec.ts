@@ -94,6 +94,26 @@ describe('PatientService', () => {
     req.flush(mockPatient);
   });
 
+  it('should add a patient', () => {
+    const mockPatient: Patient = {
+      id: "null",
+      firstName: 'John',
+      lastName: 'Doe',
+      gender: 'M',
+      birthdate: '1990-01-01',
+      address: '123 Main St',
+      phoneNumber: '555-5555'
+    };
+
+    service.addPatient(mockPatient).subscribe(patient => {
+      expect(patient).toEqual(mockPatient);
+    });
+
+    const req = httpMock.expectOne(`${apiUrl}`);
+    expect(req.request.method).toBe('POST');
+    req.flush(mockPatient);
+  });
+
   it('should handle 404 error for getPatientById', () => {
     const errorMessage = 'Patient not found';
 

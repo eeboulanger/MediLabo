@@ -1,5 +1,6 @@
 <div>
   <h2>Patient List</h2>
+  <button type="button" class="btn btn-primary" [routerLink]="['/patient-add']">Add new patient</button>
   <div *ngIf="patients.length > 0">
     <table>
       <thead>

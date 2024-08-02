@@ -34,6 +34,13 @@ export class PatientService {
       );
   }
 
+  addPatient(patient: Patient) {
+    return this.http.post<Patient>(this.apiUrl, patient)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.status === 404) {
