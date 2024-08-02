@@ -27,6 +27,13 @@ export class PatientService {
       );
   }
 
+  updatePatient(patient: Patient, id: string) {
+    return this.http.put<Patient>(`${this.apiUrl}/${id}`, patient)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.status === 404) {

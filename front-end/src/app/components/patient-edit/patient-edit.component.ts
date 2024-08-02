@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PatientService} from '../../services/patient.service';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
+import {Patient} from "../../models/Patient";
 
 @Component({
   selector: 'patient-edit',
@@ -16,12 +17,15 @@ import {FormsModule} from "@angular/forms";
 })
 
 export class PatientEditComponent implements OnInit {
-  patientId: string="";
-  patient: any;
+  patientId: string = "";
+  patient: Patient = new Patient();
   errorMessage?: string;
-  submitted: boolean = false;
 
-  constructor(private route: ActivatedRoute, private patientService: PatientService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private patientService: PatientService
+  ) {
   }
 
   ngOnInit(): void {
@@ -41,10 +45,17 @@ export class PatientEditComponent implements OnInit {
     );
   }
 
-  submitForm(patientForm: any) {
+  submitForm(patientForm: NgForm) {
     if (patientForm.valid) {
-      console.log('Form data:', this.patient);
-      this.submitted = true;
+      this.patientService.updatePatient(this.patient, this.patientId).subscribe({
+        next: () => {
+          console.log('Patient updated successfully!');
+          this.router.navigate(['/patients']); // Redirect to patient list
+        },
+        error: (error) => {
+          this.errorMessage = error;
+        }
+      });
     }
   }
 }
