@@ -30,10 +30,10 @@ jobs:
 
     # Patient Service
     - name: Run tests patientservice
-      run: mvn -B clean test --file ./medilabo/patientservice/pom.xml
+      run: mvn -B clean test --file ./patientservice/pom.xml
     
     # Gateway Service
     - name: Run tests gatewayservice
-      run: mvn -B clean test --file ./medilabo/gateway/pom.xml
+      run: mvn -B clean test --file ./gateway/pom.xml
 
    
