@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Patient} from "../models/Patient";
 import {catchError, Observable, throwError} from "rxjs";
 
@@ -43,9 +43,15 @@ export class PatientService {
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
+    if (error.headers) {
+      error.headers.keys().forEach(key => {
+        console.log(`Response Header: ${key} = ${error.headers.get(key)}`);
+      });
+    }
     if (error.status === 404) {
       errorMessage = 'Patient not found';
     } else {
+      console.log("Error in patient service")
       errorMessage = 'An error occurred: ' + error.message;
     }
     return throwError(() => new Error(errorMessage));
