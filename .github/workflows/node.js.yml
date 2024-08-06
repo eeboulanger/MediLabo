@@ -27,10 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
+    - name: Clean npm cache
+      run: npm cache clean --force
+
     - name: Install frontend dependencies
       run: npm install
       working-directory: ./frontend
 
     - name: Run Angular tests
-      run: npm run test:ci -- --watch=false --browsers=ChromeHeadless
+      run: npm ng test --no-watch --no-progress --browsers=ChromeHeadless
       working-directory: ./frontend
