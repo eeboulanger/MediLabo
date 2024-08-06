@@ -1,7 +1,6 @@
 import {inject} from "@angular/core";
 import {HttpHandlerFn, HttpRequest} from "@angular/common/http";
 import {AuthService} from "../security/auth.service";
-import {Router} from "@angular/router";
 import {throwError} from "rxjs";
 
 /**

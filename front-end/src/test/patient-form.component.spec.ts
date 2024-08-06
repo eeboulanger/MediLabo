@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {PatientFormComponent} from './patient-form.component';
+import {PatientFormComponent} from '../app/components/patient-form/patient-form.component';
 import {ActivatedRoute} from "@angular/router";
 
 describe('PatientFormComponent', () => {

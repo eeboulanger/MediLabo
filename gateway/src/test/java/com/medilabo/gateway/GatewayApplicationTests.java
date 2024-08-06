@@ -7,6 +7,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import org.springframework.security.test.context.support.WithMockUser;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 8081)
@@ -19,6 +20,7 @@ class GatewayApplicationTests {
 	void contextLoads() {
 	}
 	@Test
+	@WithMockUser(username="user")
 	public void patientsRoutingTest(){
 		stubFor(get(urlEqualTo("/patients"))
 				.willReturn(aResponse()

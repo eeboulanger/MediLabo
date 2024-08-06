@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { PatientService } from '../../services/patient.service';
-import {PatientEditComponent} from "./patient-edit.component";
+import { PatientService } from '../app/services/patient.service';
+import {PatientEditComponent} from "../app/components/patient-edit/patient-edit.component";
 import {ActivatedRoute} from "@angular/router";
 
 describe('PatientEditComponent', () => {
