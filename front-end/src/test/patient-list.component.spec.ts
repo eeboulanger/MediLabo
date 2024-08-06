@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {PatientListComponent} from './patient-list.component';
-import {PatientService} from '../../services/patient.service';
+import {PatientListComponent} from '../app/components/patient-list/patient-list.component';
+import {PatientService} from '../app/services/patient.service';
 import {ActivatedRoute} from "@angular/router";
 import {of} from "rxjs";
 

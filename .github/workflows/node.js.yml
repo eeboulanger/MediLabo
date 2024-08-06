@@ -29,10 +29,8 @@ jobs:
 
     - name: Install frontend dependencies
       run: npm install
-      working-directory: ./front-end
+      working-directory: ./frontend
 
     - name: Run Angular tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
-      working-directory: ./front-end
-
-      
+      working-directory: ./frontend
