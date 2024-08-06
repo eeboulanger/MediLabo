@@ -33,5 +33,5 @@ jobs:
       working-directory: ./front-end
 
     - name: Run Angular tests
-      run: npm test --no-watch --no-progress --browsers=ChromeHeadless
+      run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
       working-directory: ./front-end
