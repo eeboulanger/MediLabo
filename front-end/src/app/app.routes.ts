@@ -4,12 +4,14 @@ import {PatientAddComponent} from "./components/patient-add/patient-add.componen
 import {HomeComponent} from "./components/home/home.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuard} from "./security/auth.guard";
+import {MedicalRecordsListComponent} from "./components/medical-records-list/medical-records-list.component";
 
 export const routes = [
   {path: '', component: HomeComponent},
   {path: 'patients', component: PatientListComponent, canActivate: [AuthGuard]},
   {path: 'patient-edit/:id', component: PatientEditComponent, canActivate: [AuthGuard]},
   {path: 'patient-add', component: PatientAddComponent, canActivate: [AuthGuard]},
+  {path: 'medical-records/:id', component: MedicalRecordsListComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
 ];
