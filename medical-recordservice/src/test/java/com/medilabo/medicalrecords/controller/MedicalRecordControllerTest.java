@@ -1,7 +1,6 @@
 package com.medilabo.medicalrecords.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.medilabo.medicalrecords.MedicalRecordController;
 import com.medilabo.medicalrecords.model.MedicalRecord;
 import com.medilabo.medicalrecords.service.IMedicalRecordService;
 import org.junit.jupiter.api.Test;

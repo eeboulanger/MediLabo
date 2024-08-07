@@ -1,4 +1,4 @@
-package com.medilabo.medicalrecords;
+package com.medilabo.medicalrecords.controller;
 
 import com.medilabo.medicalrecords.model.MedicalRecord;
 import com.medilabo.medicalrecords.service.IMedicalRecordService;
