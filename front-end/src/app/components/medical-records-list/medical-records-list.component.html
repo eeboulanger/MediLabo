@@ -1,4 +1,12 @@
 <h2>Medical records</h2>
+<h3>Patient name: {{ patientName }}</h3>
+<div>
+  <button type="button" class="btn btn-primary"
+          [routerLink]="['/record-add', patientId]"
+          [queryParams]="{ patientName: patientName }">
+    Add new note
+  </button>
+</div>
 <div>
   <table>
     <thead>
@@ -13,5 +21,6 @@
     </tbody>
   </table>
   <button type="button" [routerLink]="['/patients']" class="btn btn-primary">
-    Back</button>
+    Back
+  </button>
 </div>

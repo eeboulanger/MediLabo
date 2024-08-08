@@ -1,0 +1,23 @@
+<h2>Medical records</h2>
+<h3>Patient name: {{ medicalRecord.patient }}</h3>
+
+<div *ngIf="errorMessage; else editForm">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<ng-template #editForm>
+  <form #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="form-group">
+      <label for="note">Note</label>
+      <input type="text" class="form-control" id="note" name="note" [(ngModel)]="medicalRecord.note" required>
+      <div *ngIf="form.form.controls['note']?.invalid" class="alert">
+        Note required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" [routerLink]="['/medical-records', patientId]" class="btn btn-primary"
+            style="background-color: darkred;">
+      Cancel
+    </button>
+  </form>
+</ng-template>

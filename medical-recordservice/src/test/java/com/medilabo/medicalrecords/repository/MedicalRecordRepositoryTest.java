@@ -45,6 +45,9 @@ public class MedicalRecordRepositoryTest {
 
         //Then return medical record
         assertEquals(newMedRec, result);
+
+        //Add to medical records list for deleting after test
+        medicalRecords.add(result);
     }
 
     @Test

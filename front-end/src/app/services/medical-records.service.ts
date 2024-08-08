@@ -7,7 +7,7 @@ import {catchError, Observable, throwError} from "rxjs";
   providedIn: "root"
 })
 
-export class MedicalRecordService {
+export class MedicalRecordsService {
 
   private apiUrl = 'http://localhost:8080/medicalrecords'; //Gateway url
 
@@ -21,9 +21,16 @@ export class MedicalRecordService {
       );
   }
 
+  addMedicalRecord(medicalrecord: MedicalRecord): Observable<MedicalRecord> {
+    return this.http.post<MedicalRecord>(this.apiUrl, medicalrecord)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
-    console.log("Error in patient service")
+    console.log("Error in medical record service")
     errorMessage = 'An error occurred: ' + error.message;
     return throwError(() => new Error(errorMessage));
   }

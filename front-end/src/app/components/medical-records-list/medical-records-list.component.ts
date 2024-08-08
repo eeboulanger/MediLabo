@@ -5,7 +5,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {MedicalRecord} from "../../models/MedicalRecord";
-import {MedicalRecordService} from "../../services/medical-recordservice";
+import {MedicalRecordsService} from "../../services/medical-records.service";
 import {NgForOf} from "@angular/common";
 
 @Component({
@@ -18,9 +18,10 @@ import {NgForOf} from "@angular/common";
 
 export class MedicalRecordsListComponent implements OnInit {
   patientId: string = '';
+  patientName: string = '';
   medicalRecords: MedicalRecord[] | undefined;
 
-  constructor(private recordService: MedicalRecordService, private route: ActivatedRoute, private router: Router) {
+  constructor(private recordService: MedicalRecordsService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class MedicalRecordsListComponent implements OnInit {
     this.recordService.getMedicalRecords(this.patientId).subscribe({
       next: records => {
         this.medicalRecords = records;
+        this.patientName = this.medicalRecords.length > 0 ? this.medicalRecords[0].patient : '';
       }
     })
   }
