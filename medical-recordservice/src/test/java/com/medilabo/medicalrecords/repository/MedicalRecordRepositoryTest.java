@@ -38,16 +38,13 @@ public class MedicalRecordRepositoryTest {
     @Test
     public void insertMedicalRecordTest() {
         //Given a new medical record
-        MedicalRecord newMedRec = new MedicalRecord("-2", "TestPatient", "medical note");
+        MedicalRecord newMedRec = new MedicalRecord("-1", "TestPatient", "medical note");
 
         //When saving to database
         MedicalRecord result = medicalRecordRepository.insert(newMedRec);
 
         //Then return medical record
         assertEquals(newMedRec, result);
-
-        //Add to medical records list for deleting after test
-        medicalRecords.add(result);
     }
 
     @Test
