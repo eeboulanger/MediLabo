@@ -32,7 +32,7 @@ public class MedicalRecordControllerTest {
         List<MedicalRecord> medicalRecord = List.of(new MedicalRecord("1", "Test", "Note"));
         when(medicalRecordService.findByPatientId("1")).thenReturn(medicalRecord);
 
-        mockMvc.perform(get("/api/medicalrecords/{patientId}", 1))
+        mockMvc.perform(get("/medicalrecords/{patientId}", 1))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.[0].patientId").value("1"))
                 .andExpect(jsonPath("$.[0].patient").value("Test"))
@@ -47,7 +47,7 @@ public class MedicalRecordControllerTest {
         ObjectMapper mapper = new ObjectMapper();
 
         when(medicalRecordService.createMedicalRecord(any(MedicalRecord.class))).thenReturn(medicalRecord);
-        mockMvc.perform(post("/api/medicalrecords")
+        mockMvc.perform(post("/medicalrecords")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(medicalRecord)))
                 .andExpect(status().is2xxSuccessful());

@@ -22,7 +22,8 @@
         <td>{{ patient.birthdate }}</td>
         <td>{{ patient.address }}</td>
         <td>{{ patient.phoneNumber }}</td>
-        <td><a [routerLink]="['/patient-edit', patient.id]">Edit</a></td>
+        <td><a [routerLink]="['/patient-edit', patient.id]">Edit</a>
+          <a [routerLink]="['/medical-records', patient.id]" style="margin-left: 15px">Notes</a></td>
       </tr>
       </tbody>
     </table>

@@ -38,7 +38,7 @@ public class MedicalRecordRepositoryTest {
     @Test
     public void insertMedicalRecordTest() {
         //Given a new medical record
-        MedicalRecord newMedRec = new MedicalRecord("-2", "TestPatient", "medical note");
+        MedicalRecord newMedRec = new MedicalRecord("-1", "TestPatient", "medical note");
 
         //When saving to database
         MedicalRecord result = medicalRecordRepository.insert(newMedRec);
