@@ -12,6 +12,16 @@ public class PatientBean {
     public PatientBean() {
     }
 
+    public PatientBean(int id, String lastName, String firstName, String birthdate, String gender, String address, String phoneNumber) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthdate = birthdate;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

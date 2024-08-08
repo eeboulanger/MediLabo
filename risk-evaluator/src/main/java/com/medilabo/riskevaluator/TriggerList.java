@@ -13,6 +13,7 @@ public class TriggerList {
             "Anormal",
             "Cholestérol",
             "Vertiges",
+            "Vertige",
             "Rechute",
             "Réaction",
             "Anticorps"
