@@ -6,6 +6,7 @@ export class Patient {
   birthdate: string;
   address: string;
   phoneNumber: string;
+  riskLevel?: string //optional
 
   constructor() {
     this.id = '';

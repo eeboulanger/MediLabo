@@ -4,6 +4,7 @@ import {PatientListComponent} from '../app/components/patient-list/patient-list.
 import {PatientService} from '../app/services/patient.service';
 import {ActivatedRoute} from "@angular/router";
 import {of} from "rxjs";
+import {RiskEvaluatorService} from "../app/services/risk-evaluator.service";
 
 class MockPatientService {
   getPatients() {
@@ -30,6 +31,12 @@ class MockPatientService {
   }
 }
 
+class MockRiskEvaluatorService {
+  getRiskLevel() {
+    return 'None';
+  }
+}
+
 describe('PatientListComponent', () => {
   let component: PatientListComponent;
   let fixture: ComponentFixture<PatientListComponent>;
@@ -39,6 +46,7 @@ describe('PatientListComponent', () => {
       imports: [PatientListComponent, HttpClientTestingModule],
       providers: [
         {provide: PatientService, useClass: MockPatientService},
+        {provide: RiskEvaluatorService, useClass: MockRiskEvaluatorService},
         {
           provide: ActivatedRoute,
           useValue: {

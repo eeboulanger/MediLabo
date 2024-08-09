@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+.nav-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-menu ul li {
+  margin-right: 15px; /* Adjust spacing between menu items */
+}
+
+.nav-menu ul li:last-child {
+  margin-right: 0;
+}
