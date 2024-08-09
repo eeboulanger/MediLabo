@@ -46,4 +46,8 @@ jobs:
     - name: Run tests medical-recordservice
       run: mvn -B clean test --file ./medical-recordservice/pom.xml
 
+    # RiskEvaluator Service
+    - name: Run tests risk-evaluator
+      run: mvn -B clean test --file ./risk-evaluator/pom.xml
+
    
