@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +27,7 @@ public class RiskEvaluationServiceTest {
     private MicroservicePatientProxy patientProxy;
 
     @InjectMocks
-    private final RiskEvaluationService riskEvaluationService = new RiskEvaluationService();
+    private RiskEvaluationService riskEvaluationService;
 
     @Test
     public void countTriggers() {

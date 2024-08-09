@@ -6,6 +6,8 @@ import com.medilabo.riskevaluator.beans.MedicalRecordBean;
 import com.medilabo.riskevaluator.beans.PatientBean;
 import com.medilabo.riskevaluator.proxies.MicroserviceMedicalRecordProxy;
 import com.medilabo.riskevaluator.proxies.MicroservicePatientProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,16 @@ import java.util.List;
 @Service
 public class RiskEvaluationService implements IRiskEvaluationService {
 
+    private final Logger logger = LoggerFactory.getLogger(RiskEvaluationService.class);
+
+    private final MicroserviceMedicalRecordProxy medicalRecordProxy;
+    private final MicroservicePatientProxy patientProxy;
+
     @Autowired
-    private MicroserviceMedicalRecordProxy medicalRecordProxy;
-    @Autowired
-    private MicroservicePatientProxy patientProxy;
+    public RiskEvaluationService(MicroserviceMedicalRecordProxy medicalRecordProxy, MicroservicePatientProxy patientProxy) {
+        this.medicalRecordProxy = medicalRecordProxy;
+        this.patientProxy = patientProxy;
+    }
 
     @Override
     public String getRiskLevel(int patientId) {
@@ -31,7 +39,7 @@ public class RiskEvaluationService implements IRiskEvaluationService {
         int age = calculateAge(patient);
 
         RiskLevel riskLevel = evaluate(count, age, patient.getGender());
-
+        logger.info("Patient id: {}, Risk level: {}", patientId, riskLevel.name());
         return riskLevel.name();
     }
 
@@ -39,8 +47,10 @@ public class RiskEvaluationService implements IRiskEvaluationService {
      * Get all medical records for patient and return notes as one string
      */
     public String getMedicalRecords(int patientId) {
+        logger.debug("Getting medical records for patient {}", patientId);
         StringBuilder notes = new StringBuilder();
         List<MedicalRecordBean> records = medicalRecordProxy.getMedicalRecords(patientId);
+        logger.debug("Found {} medical records", records.size());
 
         for (MedicalRecordBean bean : records) {
             notes.append(bean.getNote()).append(" ");
@@ -55,7 +65,7 @@ public class RiskEvaluationService implements IRiskEvaluationService {
      */
     public int countTriggers(String notes) {
         int triggers = 0;
-
+        logger.debug("Counting triggers for {}", notes);
         //Count number of triggers
         for (String trigger : TriggerList.TRIGGERS) {
             if (notes.toLowerCase().contains(trigger.toLowerCase())) {
@@ -63,10 +73,15 @@ public class RiskEvaluationService implements IRiskEvaluationService {
                 triggers++;
             }
         }
+        logger.debug("Found {} triggers", triggers);
         return triggers;
     }
 
+    /**
+     * If no patient found, the exception will be caught by the global exception handler
+     */
     private PatientBean getPatient(int patientId) {
+        logger.debug("Getting patient {}", patientId);
         return patientProxy.getPatientById(patientId); //Get patient
     }
 
@@ -80,7 +95,7 @@ public class RiskEvaluationService implements IRiskEvaluationService {
         LocalDate now = LocalDate.now(); //Get current date
 
         Period period = Period.between(birthDate, now); //Get period of time between
-
+        logger.debug("Calculating age for patient {} age: {}", patient, period.getYears());
         return period.getYears(); //return in years
     }
 
@@ -88,6 +103,7 @@ public class RiskEvaluationService implements IRiskEvaluationService {
      * Evaluates risk level for diabetes based on number of triggers, age and gender
      */
     public RiskLevel evaluate(int triggers, int age, String gender) {
+        logger.debug("Evaluating risk for patient with triggers {} age {} gender {}", triggers, age, gender);
         if (triggers == 0) {
             return RiskLevel.None;
         } else {
