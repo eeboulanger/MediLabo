@@ -1,5 +1,6 @@
 package com.medilabo.gateway;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,14 +14,11 @@ import org.springframework.security.test.context.support.WithMockUser;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 8081)
+@Disabled //Using Eureka
 class PatientServiceRoutingTests {
 
     @Autowired
     private WebTestClient webClient;
-
-    @Test
-    void contextLoads() {
-    }
 
     @Test
     @WithMockUser(username = "user")

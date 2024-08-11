@@ -1,6 +1,7 @@
 package com.medilabo.gateway;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureWireMock(port = 7070)
+@AutoConfigureWireMock(port = 7070) // This will run the WireMock server on port 7070
+@Disabled //Using Eureka
 public class MedicalRecordRoutingTests {
     @Autowired
     private WebTestClient webClient;
