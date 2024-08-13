@@ -1,0 +1,87 @@
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./medical-recordservice/src/main/resources/data.json:/data/data.json
+    command: >
+      bash -c "
+          mongod --bind_ip_all --logpath /var/log/mongodb.log &&
+          mongoimport --host localhost --db medical_records --collection records --file /data/data.json --jsonArray
+        "
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "9102:9102"
+    environment:
+        - EUREKA_SERVER_PORT=9102
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+
+  medical-records:
+    build:
+      context: ./medical-recordservice
+      dockerfile: Dockerfile
+    container_name: medical-record-service
+    ports:
+      - "7070:7070"
+    depends_on:
+      - mongodb
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=medical_records
+
+  patient-service:
+    build:
+      context: ./patientservice
+      dockerfile: Dockerfile
+    container_name: patient-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+
+  risk-evaluator:
+    build:
+      context: ./risk-evaluator
+      dockerfile: Dockerfile
+    container_name: risk-evaluator
+    ports:
+      - "9090:9090"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    container_name: front-end
+    ports:
+      - "4200:4200"
+
+volumes:
+  mongo-data:
