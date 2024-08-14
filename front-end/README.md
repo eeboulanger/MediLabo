@@ -1,27 +1,44 @@
-# FrontEnd
+# Front-End Web Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+## Overview
 
-## Development server
+This is a dynamic web application built with **Angular 18**. It utilizes **Angular Router** for navigation and **AuthGuard** for securing routes. The application serves as the user interface for interacting with the various microservices in the system.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Built With
 
-## Code scaffolding
+- **Angular 18**
+- **Angular Router**
+- **AuthGuard**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Configuration
 
-## Build
+The application is configured to run on port `4200`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Getting Started
 
-## Running unit tests
+### Clone the Project
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To get started, clone the project repository:
 
-## Running end-to-end tests
+    git clone https://github.com/eeboulanger/medilabo.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Navigate to the FrontEnd Directory
 
-## Further help
+Once the repository is cloned, navigate to the directory:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    cd medilabo/front-end
+
+### Running with Docker
+
+Ensure you have Docker installed on your machine.
+
+To build and run the Docker image, use the following commands:
+
+    docker build -t front-end .
+    docker run -p 4200:4200 front-end
+
+### Running Manually
+
+You can also run the application manually using Angular CLI. Navigate to the project directory and execute the following command:
+
+    ng serve
