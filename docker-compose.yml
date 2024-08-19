@@ -6,7 +6,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-      - ./medical-recordservice/src/main/resources/data.json:/data/data.json
+      - ./medical-record-microservice/src/main/resources/data.json:/data/data.json
     command: >
       bash -c "
           mongod --bind_ip_all --logpath /var/log/mongodb.log &&
@@ -15,9 +15,9 @@ services:
 
   eureka-server:
     build:
-      context: ./eureka-server
+      context: ./eureka-microservice
       dockerfile: Dockerfile
-    container_name: eureka-server
+    container_name: eureka-microservice
     ports:
       - "9102:9102"
     environment:
@@ -37,14 +37,14 @@ services:
 
   medical-records:
     build:
-      context: ./medical-recordservice
+      context: ./medical-record-microservice
       dockerfile: Dockerfile
-    container_name: medical-record-service
+    container_name: medical-record-microservice
     ports:
       - "7070:7070"
     depends_on:
       - mongodb
-      - eureka-server
+      - eureka-microservice
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
       - SPRING_DATA_MONGODB_HOST=mongodb
@@ -53,21 +53,21 @@ services:
 
   patient-service:
     build:
-      context: ./patientservice
+      context: ./patient-microservice
       dockerfile: Dockerfile
-    container_name: patient-service
+    container_name: patient-microservice
     ports:
       - "8081:8081"
     depends_on:
-      - eureka-server
+      - eureka-microservice
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
 
   risk-evaluator:
     build:
-      context: ./risk-evaluator
+      context: ./risk-evaluator-microservice
       dockerfile: Dockerfile
-    container_name: risk-evaluator
+    container_name: risk-evaluator-microservice
     ports:
       - "9090:9090"
     depends_on:
