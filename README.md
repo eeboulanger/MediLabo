@@ -24,11 +24,11 @@ This tool is designed to help healthcare professionals and researchers assess di
 The MediLabo Diabetes Type 2 Risk Evaluator App is built using a microservice architecture, which offers flexibility and scalability. Here’s a brief overview of the key components:
 
 - **Microservices:** The backend is composed of multiple Spring Boot microservices, each responsible for a specific part of the application:
-  - **Eureka-server:** Acts as a service registry, allowing microservices to discover each other.
+  - **Eureka-microservice:** Acts as a service registry, allowing microservices to discover each other.
   - **Gateway:** A Spring Cloud Gateway that handles routing of requests to the appropriate microservices and manages authorization using Spring Security.
-  - **Patientservice:** Manages patient data, using an H2 database for testing and a SQL database in production.
-  - **Medical-recordservice:** Manages medical records, using MongoDB for data storage.
-  - **Risk-evaluator:** Analyzes patient data to evaluate their risk for Type 2 diabetes.
+  - **Patient microservice:** Manages patient data, using an H2 database for testing and a SQL database in production.
+  - **Medical-record microservice:** Manages medical records, using MongoDB for data storage.
+  - **Risk-evaluator microservice:** Analyzes patient data to evaluate their risk for Type 2 diabetes.
 
 - **Frontend:** The user interface is built with Angular 18, providing a dynamic and responsive user interface.
 
@@ -67,21 +67,21 @@ Navigate to the Front-end directory and install the necessary packages:
 3. **Set Up the Backend:**
 - Make sure Java 21 is installed on your machine.
 - Run the microservices as Spring Boot applications:
-   - **Eureka-server:** Service registry for microservices.
+   - **Eureka-microservice:** Service registry for microservices.
    - **Gateway:** Handles routing and authorization.
-   - **Patientservice:** Manages patient-related data.
-   - **Medical-recordservice:** Manages medical records.
-   - **Risk-evaluator:** Evaluates patient risk for diabetes.
+   - **Patient microservice:** Manages patient-related data.
+   - **Medical-record microservice:** Manages medical records.
+   - **Risk-evaluator microservice:** Evaluates patient risk for diabetes.
 
-The microservices will automatically register with the Eureka server. 
+The microservices will automatically register with the Eureka microservice. 
 The Gateway will handle authorization, with an in-memory user provided for testing purposes.
 
 
-4. **Set up the database:**
-- The 'Patientservice' uses an H2 database for testing purposes and will automatically generate test patient data.
+4. **Set up the databases:**
+- The 'Patient microservice' uses an H2 database for testing purposes and will automatically generate test patient data.
 - Set Up MongoDB:
   - Install and run a MongoDB server locally.
-  - Populate the MongoDB database with test data by using the file located at ./medical-recordservice/main/resources/data.json
+  - Populate the MongoDB database with test data by using the file located at ./medical-record-microservice/main/resources/data.json
 
 
 ## Usage
