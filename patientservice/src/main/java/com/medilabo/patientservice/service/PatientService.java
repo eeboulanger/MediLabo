@@ -10,8 +10,13 @@ import java.util.List;
 
 @Service
 public class PatientService implements IPatientService {
+
+    private final PatientRepository patientRepository;
+
     @Autowired
-    private PatientRepository patientRepository;
+    public PatientService(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     @Override
     public List<Patient> getAllPatients() {
