@@ -42,3 +42,23 @@ To build and run the Docker image, use the following commands:
 You can also run the application manually using Angular CLI. Navigate to the project directory and execute the following command:
 
     ng serve
+
+
+### Sequence diagram
+
+Process showing fetching patient data and diabetes type 2 risk level:
+
+```mermaid
+sequenceDiagram
+FrontEnd->>+Gateway: getPatients()
+Gateway->>+Patienservice: getAllPatients()
+Patienservice->>-FrontEnd: List<Patient>
+
+loop For each patient in List<Patient>
+    FrontEnd->>+Gateway: fetchRiskLevel()
+    Gateway->>+RiskEvaluator: evaluate(patientId)
+    RiskEvaluator->>+Patienservice: getPatientById(id)
+    RiskEvaluator->>+MedicalRecords: getMedicalRecords(id)
+    RiskEvaluator->>-FrontEnd: riskLevel
+    end
+    
