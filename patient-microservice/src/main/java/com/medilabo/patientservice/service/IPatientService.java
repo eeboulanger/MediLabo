@@ -3,6 +3,10 @@ package com.medilabo.patientservice.service;
 import com.medilabo.patientservice.domain.Patient;
 import java.util.List;
 
+/**
+ * Any class handling operations on patients
+ */
+
 public interface IPatientService {
 
     List<Patient> getAllPatients();

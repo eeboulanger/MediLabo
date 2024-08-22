@@ -12,12 +12,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * API for fetching ad creating new medical records
+ */
+
 @RestController
 @RequestMapping("/medicalrecords")
 public class MedicalRecordController {
 
+    private final IMedicalRecordService medicalRecordService;
+
     @Autowired
-    private IMedicalRecordService medicalRecordService;
+    public MedicalRecordController(IMedicalRecordService medicalRecordService) {
+        this.medicalRecordService = medicalRecordService;
+    }
+
 
     @GetMapping("/{patientId}")
     @Operation(summary = "Fetch medical records for patient by patient id")

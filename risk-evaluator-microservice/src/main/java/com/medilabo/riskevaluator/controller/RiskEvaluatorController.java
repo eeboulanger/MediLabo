@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * API for risk evaluation for patients
+ */
+
 @RestController
 @RequestMapping("/risk-evaluator")
 public class RiskEvaluatorController {

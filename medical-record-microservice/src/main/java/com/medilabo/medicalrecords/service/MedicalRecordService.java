@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Handles CRUD operations on medical records
+ */
+
 @Service
 public class MedicalRecordService implements IMedicalRecordService {
 

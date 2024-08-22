@@ -16,6 +16,10 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Evaluates risk level for diabetes type 2
+ */
+
 @Service
 public class RiskEvaluationService implements IRiskEvaluationService {
 

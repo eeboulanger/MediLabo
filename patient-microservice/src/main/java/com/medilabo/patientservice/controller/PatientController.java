@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * API for patient data
+ */
+
 @RestController
 @RequestMapping("/patients")
 public class PatientController {

@@ -13,7 +13,7 @@ services:
           mongoimport --host localhost --db medical_records --collection records --file /data/data.json --jsonArray
         "
 
-  eureka-server:
+  eureka-microservice:
     build:
       context: ./eureka-microservice
       dockerfile: Dockerfile
@@ -31,9 +31,9 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - eureka-server
+      - eureka-microservice
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-microservice:9102/eureka/
 
   medical-records:
     build:
@@ -46,7 +46,7 @@ services:
       - mongodb
       - eureka-microservice
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-microservice:9102/eureka/
       - SPRING_DATA_MONGODB_HOST=mongodb
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_DATABASE=medical_records
@@ -61,7 +61,7 @@ services:
     depends_on:
       - eureka-microservice
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-microservice:9102/eureka/
 
   risk-evaluator:
     build:
@@ -71,9 +71,9 @@ services:
     ports:
       - "9090:9090"
     depends_on:
-      - eureka-server
+      - eureka-microservice
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9102/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-microservice:9102/eureka/
 
   front-end:
     build:
