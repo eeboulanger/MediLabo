@@ -18,6 +18,11 @@ import java.util.Collections;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/**
+ * Security filter, authorization is requested for all exchanges
+ * CORS allows requests from port 4200
+ * An in memory user is instantiated for testing purposes
+ */
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityFilterConfig {
@@ -28,7 +33,7 @@ public class SecurityFilterConfig {
                         .anyExchange().authenticated())
                 .httpBasic(withDefaults())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
-        .cors(cors -> cors.configurationSource(corsConfigurationSource()));
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
         return http.build();
     }
 
@@ -44,6 +49,7 @@ public class SecurityFilterConfig {
         return source;
     }
 
+    //TODO remove for production
     @Bean
     public MapReactiveUserDetailsService userDetailsService() {
         UserDetails user = User.withUsername("user")
