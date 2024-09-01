@@ -111,7 +111,6 @@ public class RiskEvaluationService implements IRiskEvaluationService {
         if (triggers == 0) {
             return RiskLevel.None;
         } else {
-
             if (gender.equals("M") && age < 30) {
                 if (triggers >= 5) {
                     return RiskLevel.EarlyOnset;
@@ -119,7 +118,6 @@ public class RiskEvaluationService implements IRiskEvaluationService {
                     return RiskLevel.InDanger;
                 }
             }
-
             if (gender.equals("F") && age < 30) {
                 if (triggers == 4) {
                     return RiskLevel.InDanger;

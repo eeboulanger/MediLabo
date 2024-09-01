@@ -32,9 +32,6 @@ public class PatientRepositoryTest {
 
         //Then return all patients in database
         assertEquals(numberOfPatients, patientList.size());
-        for (Patient patient : patientRepository.findAll()) {
-            System.out.println(patient.getId());
-        }
 
         //When save
         patient = new Patient("Doe", "Joe", "1950-01-01", "M", null, null);

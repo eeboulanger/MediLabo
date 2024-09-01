@@ -5,6 +5,7 @@ import java.util.List;
 public class TriggerList {
     public static final List<String> TRIGGERS = Arrays.asList(
             "Hémoglobine A1C",
+            "Hemoglobine A1C",
             "Microalbumine",
             "Taille",
             "Poids",
@@ -16,6 +17,7 @@ public class TriggerList {
             "Vertige",
             "Rechute",
             "Réaction",
+            "Reaction",
             "Anticorps"
     );
 }

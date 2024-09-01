@@ -98,4 +98,28 @@ The user interface allows you to:
 - Edit a patient’s data or add a new patient.
 - Add a new note (medical record) for a patient.
 
+## Green code
 
+### Green Code Practices
+In this project, green code principles have been implemented in the following ways:
+
+1. **Prioritizing Progressive Web Apps (PWA) over Native Apps:** Reduces the need for multiple platform-specific applications, resulting in lower resource consumption.
+
+2. **Favoring static content with regular updates:** Minimizing server load and reducing energy consumption.
+
+3. **Adopting a web-optimized design:** Minimalist and optimized for the web to ensure fast load times, reducing the computing power required.
+
+4. **Creating a modular application architecture:** A modular approach allows for better resource management and easier updates, which can help in reducing unnecessary processes.
+
+5. **Using the most recent version of programming languages:** To ensure better performance, reduced energy consumption, and take advantage of the most efficient coding practices.
+
+### Points of Improvement
+1. **Microservices architecture resilience:** In a microservices architecture, a failing service can cause cascading failures. Implementing a circuit breaker pattern can isolate failures and prevent them from affecting other parts of the system, improving overall system reliability and reducing the need for additional resource consumption due to failure recovery.
+
+2. **Optimize queries:** Optimize database queries to reduce processing time and energy consumption.
+
+3. **Implement Front-End Caching:** Using a caching system on the front-end server can reduce the number of requests to the back-end.
+
+4. **Pagination instead of infinite scrolling:** Pagination helps limit the amount of data loaded at once
+
+5. **Minimize stored data:** Store only the necessary data and avoid repeating.

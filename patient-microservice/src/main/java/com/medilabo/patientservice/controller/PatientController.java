@@ -21,8 +21,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
+
+    private final IPatientService patientService;
+
     @Autowired
-    private IPatientService patientService;
+    public PatientController(IPatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @Operation(summary = "Get all patients")
     @ApiResponses(value = {

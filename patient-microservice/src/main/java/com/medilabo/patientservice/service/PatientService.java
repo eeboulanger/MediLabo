@@ -43,7 +43,7 @@ public class PatientService implements IPatientService {
                     existingPatient.setAddress(patient.getAddress());
                     return patientRepository.save(existingPatient);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Patient not found"));
     }
 
     @Override
